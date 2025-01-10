@@ -8,6 +8,9 @@
     },
     "slidesPerView": 1,
     "effect": "fade",
+    "fadeEffect": {
+      "crossFade": true
+    },
     "loop": true
   }'>
   <div class="swiper-wrapper">
@@ -45,8 +48,6 @@
     </div>
   </div>
 </section>
-
-
 
 </main>
 @endsection

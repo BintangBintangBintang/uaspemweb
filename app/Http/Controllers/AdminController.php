@@ -87,7 +87,7 @@ class AdminController extends Controller
             $image = $request->file('image');
             $imageName = $currentTimestamp . '.' . $image->extension();
             $this->generateThumbnailImage($image, $imageName);
-            $product->image = $imageName;
+            $product->image = $imageName; crot
         }
 
         $galleryImages = [];

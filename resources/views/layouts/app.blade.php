@@ -1,31 +1,33 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
+
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="author" content="surfside media" />
-  <link rel="shortcut icon" href="{{ asset ('assets/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.gstatic.com/">
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Allura&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset ('assets/css/plugins/swiper.min.css')}}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}" type="text/css" />
-  <link rel="stylesheet" href="{{ asset ('assets/css/custom.css')}}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css')}}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
-    @stack("styles")
+  @stack("styles")
 </head>
+
 <body class="gradient-bg">
   <svg class="d-none">
     <symbol id="icon_nav" viewBox="0 0 25 18">
@@ -276,14 +278,15 @@
       </div>
 
       <a href="{{route('cart.index')}}" class="header-tools__item header-tools__cart">
-    <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <use href="#icon_cart" />
-    </svg>
-    
-    @if(Cart::instance("cart")->content()->count()>0) 
-        <span class="cart-amount d-block position-absolute js-cart-items-count">{{Cart::instance("cart")->content()->count()}}</span>
+        <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <use href="#icon_cart" />
+        </svg>
+
+        @if(Cart::instance("cart")->content()->count() > 0)
+      <span
+        class="cart-amount d-block position-absolute js-cart-items-count">{{Cart::instance("cart")->content()->count()}}</span>
     @endif
-</a>
+      </a>
     </div>
 
     <nav
@@ -314,7 +317,7 @@
             <li class="navigation__item">
               <a href="{{route('home.index')}}" class="navigation__link">Home</a>
             </li>
-            
+
             <li class="navigation__item">
               <a href="{{route('cart.index')}}" class="navigation__link">Cart</a>
             </li>
@@ -340,7 +343,7 @@
       <div class="header-desk header-desk_type_1">
         <div class="logo">
           <a href="{{route('home.index')}}">
-          <img src="{{ asset('assets/images/logo.png')}}" alt="Uomo" class="logo__image d-block" width="130" />
+            <img src="{{ asset('assets/images/logo.png')}}" alt="Uomo" class="logo__image d-block" width="130" />
           </a>
         </div>
 
@@ -353,9 +356,9 @@
             <li class="navigation__item">
               <a href="{{route('shop.index')}}" class="navigation__link">Shop</a>
             </li>
-           
+
             <li class="navigation__item">
-              <a href="{{route('cart.index')}}"" class="navigation__link">Cart</a>
+              <a href="{{route('cart.index')}}"" class=" navigation__link">Cart</a>
             </li>
           </ul>
         </nav>
@@ -366,43 +369,46 @@
             </div>
 
             @guest
-          <div class="header-tools__item hover-container">
-            <a href="{{route('login')}}" class="header-tools__item">
+        <div class="header-tools__item hover-container">
+          <a href="{{route('login')}}" class="header-tools__item">
+          <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <use href="#icon_user" />
+          </svg>
+          </a>
+        </div>
+
+      @else
+
+    <div class="header-tools__item hover-container">
+      <a href="{{Auth::user()->utype === 'ADM' ? route('admin.index') : route('user.index') }}"
+      class="header-tools__item">
+      <span class="pr-6px">{{Auth::user()->name}}</span>
+      <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <use href="#icon_user" />
+      </svg>
+      </a>
+    </div>
+  @endguest
+
+            <a href="{{route('cart.index')}}" class="header-tools__item header-tools__cart">
               <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
-                <use href="#icon_user" />
+                <use href="#icon_cart" />
               </svg>
+
+              @if(Cart::instance("cart")->content()->count() > 0)
+          <span
+          class="cart-amount d-block position-absolute js-cart-items-count">{{Cart::instance("cart")->content()->count()}}</span>
+        @endif
             </a>
           </div>
-
-            @else
-
-            <div class="header-tools__item hover-container">
-            <a href="{{Auth::user()->utype === 'ADM' ? route('admin.index'): route('user.index') }}" class="header-tools__item">
-                <span class="pr-6px">{{Auth::user()->name}}</span>
-              <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <use href="#icon_user" />
-              </svg>
-            </a>
-          </div>
-            @endguest
-
-          <a href="{{route('cart.index')}}" class="header-tools__item header-tools__cart">
-    <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <use href="#icon_cart" />
-    </svg>
-    
-    @if(Cart::instance("cart")->content()->count()>0) 
-        <span class="cart-amount d-block position-absolute js-cart-items-count">{{Cart::instance("cart")->content()->count()}}</span>
-    @endif
-</a>
         </div>
       </div>
-    </div>
   </header>
- 
-    @yield("content")
+
+  @yield("content")
 
   <hr class="mt-5 text-secondary" />
   <footer class="footer footer_type_2">
@@ -421,13 +427,13 @@
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Live Your Nostalgic Once Again.</h6>
         </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container d-md-flex align-items-center">
-        <span class="footer-copyright me-auto">©2024 Gameboy2go</span>
       </div>
-    </div>
+
+      <div class="footer-bottom">
+        <div class="container d-md-flex align-items-center">
+          <span class="footer-copyright me-auto">©2024 Gameboy2go</span>
+        </div>
+      </div>
   </footer>
 
 
@@ -458,7 +464,7 @@
           <div class="position-relative">
             <svg class="d-block" width="18" height="18" viewBox="0 0 20 20" fill="none"
               xmlns="http://www.w3.org/2000/svg">
-              
+
             </svg>
             <span class="wishlist-amount d-block position-absolute js-wishlist-count">3</span>
           </div>
@@ -479,4 +485,5 @@
   <script src="{{ asset('assets/js/theme.js')}}"></script>
   @Stack("scripts")
 </body>
+
 </html>

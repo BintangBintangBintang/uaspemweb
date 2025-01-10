@@ -15,6 +15,11 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::middleware(['auth'])->group(function(){
+
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/account-orders',[UserController::class,'account_orders'])->name('user.account.orders');
+    Route::get('/account-order-detials/{order_id}',[UserController::class,'account_order_details'])->name('user.acccount.order.details');
+
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/products',[AdminController::class,'products'])->name('admin.products');
     Route::get('/admin/product/add',[AdminController::class,'product_add'])->name('admin.product.add');

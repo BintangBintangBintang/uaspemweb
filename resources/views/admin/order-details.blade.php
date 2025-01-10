@@ -175,16 +175,8 @@
             <h5>Transactions</h5>
             <table class="table table-striped table-bordered table-transaction">
                 <tr>
-                    <th>Subtotal</th>
-                    <td>${{$transaction->order->subtotal}}</td>
-                    <th>Tax</th>
-                    <td>${{$transaction->order->tax}}</td>
-                    <th>Discount</th>
-                    <td>${{$transaction->order->discount}}</td>
-                </tr>
-                <tr>
                     <th>Total</th>
-                    <td>${{$transaction->order->total}}</td>
+                    <td>${{$transaction->order->subtotal}}</td>
                     <th>Payment Mode</th>
                     <td>{{$transaction->mode}}</td>
                     <th>Status</th>
